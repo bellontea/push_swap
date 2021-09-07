@@ -1,9 +1,9 @@
-#include "libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_stack	*ft_lstmap(t_stack *lst, void *(*f)(int *))
 {
-	t_list	*new_lst;
-	t_list	*new_elem;
+	t_stack	*new_lst;
+	t_stack	*new_elem;
 
 	new_lst = NULL;
 	while (lst)
@@ -11,7 +11,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		new_elem = ft_lstnew(f(lst->content));
 		if (!new_elem)
 		{
-			ft_lstclear(&new_lst, del);
+			ft_lstclear(&new_lst);
 			return (NULL);
 		}
 		ft_lstadd_back(&new_lst, new_elem);

@@ -1,6 +1,6 @@
-#include "libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstlast(t_list *lst)
+t_stack	*ft_lstlast(t_stack *lst)
 {
 	while (lst && lst->next)
 		lst = lst->next;

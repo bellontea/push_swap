@@ -1,37 +1,35 @@
-NAME = push_swap.a
-LIB = libft.a
+NAME	=   push_swap
+HEADER  =   push_swap.h
 
-PATH_LIB = ./libft/
+# SRC_COM	=   s.c p.c
+# SRC_COM	=   s.c p.c
 
-HEADERS = ./push_swap.h ./libft/libft.h
-HDR_INC = -I ./ -I ./libft/
+SRCS_UTILS =   $(shell ls ./utils/*.c)
 
-C_FLAGS = -Wall -Wextra -Werror -c
+SRCS		=   ${SRCS_UTILS} main.c
 
-SRC = main.c				
-SOURCES = ${SRC}
-OBJS = ${SOURCES:.c=.o} $(addprefix $(PATH_LIB), $(LIB_OBG))
+CFLAGS	= -Wall -Wextra -Werror
 
-RM = rm -rf
+RM		= rm -rf
 
-%.o : %.c $(HEADERS)
-	gcc $(C_FLAGS) $(HDR_INC) $< -o $@
+CC		=   gcc
 
-all: run_libft 
-	gcc $(C_FLAGS) $(HDR_INC) $(OBJS) -L $(PATH_LIB) -lft -o $(LIB)
+OBJS	=	$(SRCS:%.c=%.o)
 
-run_libft:
-	@make -C $(PATH_LIB)
+all:		$(NAME)
 
-$(NAME): $(OBJS) $(HEADERS)
-	ar rcs $(NAME) $(OBJS) $(HEADERS)
+$(NAME):	${OBJS} $(HEADER)
+			$(CC) -o $(NAME) ${OBJS}
+
+%.o: 		%.c	
+			$(CC) $(CFLAGS) -I./ -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
-	@make -C $(PATH_LIB) clean
+			$(RM) ${OBJS}
 
-fclean: clean
-	$(RM) $(NAME)
-	@make -C $(PATH_LIB) fclean
+fclean:		clean
+			$(RM) $(NAME)
 
-re: fclean all
+re:			fclean all
+
+.PHONY: clean fclean re
