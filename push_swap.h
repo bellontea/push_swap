@@ -18,8 +18,7 @@ t_stack		*ft_lstlast(t_stack *lst);
 void		ft_lstadd_back(t_stack **lst, t_stack *new);
 void		ft_lstdelone(t_stack *lst);
 void		ft_lstclear(t_stack **lst);
-void		ft_lstiter(t_stack *lst, void (*f)(int *));
-t_stack		*ft_lstmap(t_stack *lst, void *(*f)(int *));
+void		ft_lstiter(t_stack *lst, void (*f)(int));
 int			ft_atoi(const char *str);
 int			ft_isdigit(int c);
 

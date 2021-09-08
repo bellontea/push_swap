@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	ft_lstiter(t_stack *lst, void (*f)(int *))
+void	ft_lstiter(t_stack *lst, void (*f)(int))
 {
 	while (lst)
 	{
