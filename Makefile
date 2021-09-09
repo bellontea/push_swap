@@ -1,12 +1,11 @@
 NAME	=   push_swap
 HEADER  =   push_swap.h
 
-# SRC_COM	=   s.c p.c
-# SRC_COM	=   s.c p.c
+SRCS_COMMS = $(shell ls ./commands/*.c)
 
 SRCS_UTILS =   $(shell ls ./utils/*.c)
 
-SRCS		=   ${SRCS_UTILS} main.c
+SRCS		=   ${SRCS_UTILS} ${SRCS_COMMS} main.c
 
 CFLAGS	= -Wall -Wextra -Werror
 

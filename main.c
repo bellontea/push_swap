@@ -1,4 +1,55 @@
 #include "push_swap.h"
+#include "stdio.h"
+
+void	output(t_stack *a, t_stack *b)
+{
+	printf("\nStack a:\n");
+	if (!a)
+		return ;
+	while (a)
+	{
+		printf("%d ", a->content);
+		a = a->next;
+	}
+	printf("\nStack b:\n");
+	if (!b)
+		return ;
+	while (b)
+	{
+		printf("%d ", b->content);
+		b = b->next;
+	}
+	printf("\n");
+}
+
+void	check(t_stack **a, t_stack **b)
+{
+	pb(a, b);
+	pb(a, b);
+	pb(a, b);
+	output(*a, *b);
+
+	sa(a);
+	output(*a, *b);
+	sb(b);
+	output(*a, *b);
+	ss(a, b);
+	output(*a, *b);
+
+	ra(a);
+	output(*a, *b);
+	rb(b);
+	output(*a, *b);
+	rr(a, b);
+	output(*a, *b);
+
+	rra(a);
+	output(*a, *b);
+	rrb(b);
+	output(*a, *b);
+	rrr(a, b);
+	output(*a, *b);
+}
 
 void	ft_error(t_stack **stack_a)
 {
@@ -29,9 +80,11 @@ int		ft_check_nums(char *argv, t_stack *stack_a, int *num)
 int main(int argc, char **argv)
 {
 	t_stack *stack_a;
+	t_stack	*stack_b;
 	int		num;
 
 	stack_a = NULL;
+	stack_b = NULL;
 	argc--;
 	if (argc < 2)
 	{
@@ -49,4 +102,6 @@ int main(int argc, char **argv)
 		ft_lstadd_front(&stack_a, ft_lstnew(num));
 		argc--;
 	}
+	output(stack_a, stack_b);
+	check(&stack_a, &stack_b);
 }
