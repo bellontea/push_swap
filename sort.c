@@ -33,7 +33,7 @@ int	*sort(t_stack *stack, int size)
 		while (j < size)
 		{
 			if (array[j] < array[min])
-				min =j;
+				min = j;
 			j++;
 		}
 		sw(&array[i], &array[min]);
