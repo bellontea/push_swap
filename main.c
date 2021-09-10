@@ -82,6 +82,9 @@ int main(int argc, char **argv)
 	t_stack *stack_a;
 	t_stack	*stack_b;
 	int		num;
+	int		*array;
+	int		size;
+	int i;
 
 	stack_a = NULL;
 	stack_b = NULL;
@@ -91,6 +94,7 @@ int main(int argc, char **argv)
 		ft_error(&stack_a);
 		return (-1);
 	}
+	size = argc;
 	while (argc)
 	{
 		num = 0;
@@ -102,6 +106,13 @@ int main(int argc, char **argv)
 		ft_lstadd_front(&stack_a, ft_lstnew(num));
 		argc--;
 	}
+	array = sort(stack_a, size);
 	output(stack_a, stack_b);
-	check(&stack_a, &stack_b);
+	i = 0;
+	while (i < size)
+	{
+		printf("%d", array[i]);
+		i++;
+	}
+//	check(&stack_a, &stack_b);
 }

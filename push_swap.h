@@ -9,6 +9,8 @@ typedef struct 		s_stack
 {
 	int				content;
 	struct s_stack	*next;
+	int				order;
+	int				flag;
 }					t_stack;
 
 t_stack		*ft_lstnew(int content);
@@ -32,5 +34,6 @@ void    	rr(t_stack **a, t_stack **b);
 void    	rra(t_stack **a);
 void    	rrb(t_stack **b);
 void    	rrr(t_stack **a, t_stack **b);
+int			*sort(t_stack *stack, int size);
 
 #endif

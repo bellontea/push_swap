@@ -5,7 +5,7 @@ SRCS_COMMS = $(shell ls ./commands/*.c)
 
 SRCS_UTILS =   $(shell ls ./utils/*.c)
 
-SRCS		=   ${SRCS_UTILS} ${SRCS_COMMS} main.c
+SRCS		=   ${SRCS_UTILS} ${SRCS_COMMS} $(shell ls ./*.c)
 
 CFLAGS	= -Wall -Wextra -Werror
 
@@ -30,5 +30,8 @@ fclean:		clean
 			$(RM) $(NAME)
 
 re:			fclean all
+
+test:
+	make -s && make -s clean
 
 .PHONY: clean fclean re
