@@ -22,6 +22,19 @@ void	output(t_stack *a, t_stack *b)
 	printf("\n");
 }
 
+void	array_output(int *array, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		printf("%d ", array[i]);
+		i++;
+	}
+	printf("\n");
+}
+
 void	check(t_stack **a, t_stack **b)
 {
 	pb(a, b);
@@ -84,7 +97,6 @@ int main(int argc, char **argv)
 	int		num;
 	int		*array;
 	int		size;
-	int i;
 
 	stack_a = NULL;
 	stack_b = NULL;
@@ -107,12 +119,7 @@ int main(int argc, char **argv)
 		argc--;
 	}
 	array = sort(stack_a, size);
+	array_output(array, size);
 	output(stack_a, stack_b);
-	i = 0;
-	while (i < size)
-	{
-		printf("%d", array[i]);
-		i++;
-	}
 //	check(&stack_a, &stack_b);
 }
