@@ -13,6 +13,29 @@ typedef struct 		s_stack
 	int				flag;
 }					t_stack;
 
+typedef struct	s_info
+{
+	int			max;
+	int			mid;
+	int			next;
+	int			flag;
+}				t_info;
+
+enum e_content
+{
+	SA,
+	SB,
+	SS,
+	PA,
+	PB,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB,
+	RRR
+};
+
 t_stack		*ft_lstnew(int content);
 void		ft_lstadd_front(t_stack **lst, t_stack *new);
 int			ft_lstsize(t_stack *lst);
@@ -35,6 +58,7 @@ void    	rra(t_stack **a);
 void    	rrb(t_stack **b);
 void    	rrr(t_stack **a, t_stack **b);
 int			*sort(t_stack *stack, int size);
-void		array_output(int *array, int size);
+void		array_output(int *array, t_stack *stack, int size);
+void    	stack_sort(t_stack **a, int size);
 
 #endif

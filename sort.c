@@ -15,16 +15,21 @@ int	*sort(t_stack *stack, int size)
 	int i;
 	int	j;
 	int	min;
+	int	**links;
+	t_stack *save;
 
+	save = stack;
 	array = malloc(sizeof(int) * size);
+	links = malloc(sizeof(int*) * size);
 	i = 0;
 	while (stack)
 	{
 		array[i] = stack->content;
+		links[i] = &(stack->order);
 		stack = stack->next;
 		i++;
 	}
-	array_output(array, size);
+	array_output(array, save, size);
 	i = 0;
 	while (i < size)
 	{
@@ -37,6 +42,13 @@ int	*sort(t_stack *stack, int size)
 			j++;
 		}
 		sw(&array[i], &array[min]);
+		sw(links[i], links[min]);
+		i++;
+	}
+	i = 0;
+	while (i < size)
+	{
+		*links[i] = i + 1;
 		i++;
 	}
 	return (array);
