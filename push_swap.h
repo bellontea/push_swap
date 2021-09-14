@@ -58,7 +58,7 @@ void    	rra(t_stack **a);
 void    	rrb(t_stack **b);
 void    	rrr(t_stack **a, t_stack **b);
 int			*sort(t_stack *stack, int size);
-void		array_output(int *array, t_stack *stack, int size);
+void		array_output(t_stack *stack, int size);
 void    	stack_sort(t_stack **a, int size);
 
 #endif

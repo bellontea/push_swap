@@ -22,14 +22,14 @@ void	output(t_stack *a, t_stack *b)
 	printf("\n");
 }
 
-void	array_output(int *array, t_stack *stack, int size)
+void	array_output(t_stack *stack, int size)
 {
 	int	i;
 
 	i = 0;
 	while (i < size)
 	{
-		printf("%d(%d) ", array[i], stack->order);
+		printf("%d(%d) ", stack->content, stack->order);
 		stack = stack->next;
 		i++;
 	}
@@ -100,6 +100,7 @@ int main(int argc, char **argv)
 
 	a = NULL;
 	argc--;
+	(void)array;
 	if (argc < 2)
 	{
 		ft_error(&a);
@@ -118,7 +119,7 @@ int main(int argc, char **argv)
 		argc--;
 	}
 	array = sort(a, size);
-	array_output(array, a, size);
+	array_output(a, size);
 	stack_sort(&a, size);
 	ft_lstclear(&a);
 //	check(&a, &stack_b);

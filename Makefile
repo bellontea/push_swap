@@ -15,6 +15,8 @@ CC		=   gcc
 
 OBJS	=	$(SRCS:%.c=%.o)
 
+ARG		=	$(shell ruby -e "puts (1..100).to_a.shuffle.join(' ')")
+
 all:		$(NAME)
 
 $(NAME):	${OBJS} $(HEADER)
@@ -31,7 +33,7 @@ fclean:		clean
 
 re:			fclean all
 
-test:
-	make -s && make -s clean
+test:		
+			make -s && make -s  clean && ./push_swap $(ARG)
 
 .PHONY: clean fclean re
