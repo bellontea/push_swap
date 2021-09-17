@@ -42,6 +42,7 @@ int			ft_lstsize(t_stack *lst);
 t_stack		*ft_lstlast(t_stack *lst);
 void		ft_lstadd_back(t_stack **lst, t_stack *new);
 void		ft_lstdelone(t_stack *lst);
+void		ft_lstdel_next(t_stack **lst);
 void		ft_lstclear(t_stack **lst);
 void		ft_lstiter(t_stack *lst, void (*f)(int));
 int			ft_atoi(const char *str);
@@ -60,5 +61,6 @@ void    	rrr(t_stack **a, t_stack **b);
 int			*sort(t_stack *stack, int size);
 void		array_output(t_stack *stack, int size);
 void    	stack_sort(t_stack **a, int size);
+void		output(t_stack	*comms);
 
 #endif

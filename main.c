@@ -1,7 +1,7 @@
 #include "push_swap.h"
 #include "stdio.h"
 
-void	output(t_stack *a, t_stack *b)
+void	foutput(t_stack *a, t_stack *b)
 {
 	printf("\nStack a:\n");
 	if (!a)
@@ -41,28 +41,28 @@ void	check(t_stack **a, t_stack **b)
 	pb(a, b);
 	pb(a, b);
 	pb(a, b);
-	output(*a, *b);
+	foutput(*a, *b);
 
 	sa(a);
-	output(*a, *b);
+	foutput(*a, *b);
 	sb(b);
-	output(*a, *b);
+	foutput(*a, *b);
 	ss(a, b);
-	output(*a, *b);
+	foutput(*a, *b);
 
 	ra(a);
-	output(*a, *b);
+	foutput(*a, *b);
 	rb(b);
-	output(*a, *b);
+	foutput(*a, *b);
 	rr(a, b);
-	output(*a, *b);
+	foutput(*a, *b);
 
 	rra(a);
-	output(*a, *b);
+	foutput(*a, *b);
 	rrb(b);
-	output(*a, *b);
+	foutput(*a, *b);
 	rrr(a, b);
-	output(*a, *b);
+	foutput(*a, *b);
 }
 
 void	ft_error(t_stack **a)
@@ -89,6 +89,16 @@ int		ft_check_nums(char *argv, t_stack *a, int *num)
 		a = a->next;
 	}
 	return (1);
+}
+
+void	output(t_stack	*comms)
+{
+	const char	commands[12][4] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"};
+	while (comms)
+	{
+		printf("%s\n", commands[comms->content]);
+		comms = comms->next;
+	}
 }
 
 int main(int argc, char **argv)
@@ -119,7 +129,7 @@ int main(int argc, char **argv)
 		argc--;
 	}
 	array = sort(a, size);
-	array_output(a, size);
+//	array_output(a, size);
 	stack_sort(&a, size);
 	ft_lstclear(&a);
 //	check(&a, &stack_b);
