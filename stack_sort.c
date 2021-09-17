@@ -46,34 +46,6 @@ void	fill_info(t_info *info, int max)
 	info->mid = (info->max - info->next) / 2 + info->next;	
 }
 
-void	stack_output(t_stack *a, t_stack *b, t_stack *comms, t_info *info)
-{
-	const char	commands[12][4] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"};
-	printf("INFO:\nmax: %d\nmid: %d\nnext: %d\n", info->max, info->mid, info->next);
-	printf("\n");
-	printf("Stack a:\n");
-	while (a)
-	{
-		printf("%d ", a->content);
-		a = a->next;
-	}
-	printf("\n");
-	printf("Stack b:\n");
-	while (b)
-	{
-		printf("%d ", b->content);
-		b = b->next;
-	}
-	printf("\n");
-	printf("Commands:\n");
-	while (comms)
-	{
-		printf("%s ", commands[comms->content]);
-		comms = comms->next;
-	}
-		printf("\n\n");
-}
-
 int     is_sorted(t_stack *a)
 {
 	while (a->next)

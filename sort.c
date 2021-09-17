@@ -27,7 +27,6 @@ int	*sort(t_stack *stack, int size)
 		stack = stack->next;
 		i++;
 	}
-//	array_output(array, save, size);
 	i = 0;
 	while (i < size)
 	{
