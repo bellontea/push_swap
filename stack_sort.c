@@ -87,7 +87,6 @@ int     is_sorted(t_stack *a)
 
 void	find_place(t_stack **a, t_stack **b, t_info *info, t_stack **comms)
 {
-//	printf("\n***\n");
 	(*b)->flag = -1;
 	pa(a, b);
 	ft_lstadd_back(comms, ft_lstnew(PA));
@@ -105,11 +104,18 @@ void	swap_if_next(t_stack **a, t_stack **b, t_info *info, t_stack **comms)
 			sa(a);
 			ft_lstadd_back(comms, ft_lstnew(SA));
 		}
-		else
+		else if ((*b)->order == info->next + 1)
+		{
+			pa(a, b);
+			ft_lstadd_back(comms, ft_lstnew(PA));
+		}
+		else if ((*b)->order < info->mid)
 		{
 			sb(b);
 			ft_lstadd_back(comms, ft_lstnew(SB));
 		}
+		else if ((*b)->order >= info->mid)
+			break ;
 	}
 }
 
@@ -129,10 +135,8 @@ void	check_top_value(t_stack **a, t_stack **b, t_info *info, t_stack **comms)
 {
 	swap_if_next(a, b, info, comms);
 	check_bottom_value(b, info, comms);
-	swap_if_next(a, b, info, comms);
 	while ((*a && (*a)->order == info->next) || (*b && (*b)->order == info->next))
 	{
-//		stack_output(*a, *b, *comms, info);
 		if (*b && (*b)->order == info->next)
 			find_place(a, b, info, comms);
 		else
@@ -144,7 +148,6 @@ void	check_top_value(t_stack **a, t_stack **b, t_info *info, t_stack **comms)
 		}
 		swap_if_next(a, b, info, comms);
 		check_bottom_value(b, info, comms);
-		swap_if_next(a, b, info, comms);
 	}
 }
 
@@ -171,7 +174,7 @@ void    move_to_b(t_stack **a, t_stack **b, t_info *info, t_stack **comms)
 	}
 }
 
-int f(t_stack *s, int mid)
+int check_values(t_stack *s, int mid)
 {
 	while (s)
 	{
@@ -184,25 +187,13 @@ int f(t_stack *s, int mid)
 
 void	move_to_a(t_stack **a, t_stack **b, t_info *info, t_stack **comms)
 {
-//	int i;
-//	int size;
-
-//	i = 0;
-//	size = info->max - info->mid + 1;
-	while (*b && f(*b, info->mid))
+	while (*b && check_values(*b, info->mid))
 	{
-//		stack_output(*a, *b, *comms, info);
-//		check_bottom_value(b, info, comms);
 		check_top_value(a, b, info, comms);
 		if (!*b)
 			return ;
 		if ((*b)->order < info->mid)
 		{
-			// if ((*b)->order == info->next)
-			// {
-			// 	find_place(a, b, info, comms);
-			// 	continue;
-			// }
 			rb(b);
 			ft_lstadd_back(comms, ft_lstnew(RB));
 		}
@@ -211,10 +202,8 @@ void	move_to_a(t_stack **a, t_stack **b, t_info *info, t_stack **comms)
 			(*b)->flag = info->flag;
 			pa(a, b);
 			ft_lstadd_back(comms, ft_lstnew(PA));
-//			i++;
 		}
 	}
-//	check_bottom_value(b, info, comms);
 	check_top_value(a, b, info, comms);
 }
 
@@ -224,7 +213,6 @@ void    stack_sort(t_stack **a, int size)
 	t_info		*info;
 	t_stack		*comms;
 	int			curr_flag;
-	int i;
 
 	b = NULL;
 	comms = NULL;
@@ -232,13 +220,8 @@ void    stack_sort(t_stack **a, int size)
 	info->max = size;
 	info->next = 1;
 	info->mid = info->max / 2 + info->next;
-	i = 0;
 	while (b || !is_sorted(*a))
-//	while (i < 2)
 	{
-//		stack_output(*a, b, comms, info);
-//		check_top_value(a, &b, info, &comms);
-		if (b == NULL)
 		move_to_b(a, &b, info, &comms);
 		while (info->flag && ft_lstlast(*a)->flag != -1)
 		{
@@ -247,7 +230,6 @@ void    stack_sort(t_stack **a, int size)
 		}
 		while (b != NULL)
 		{
-//			stack_output(*a, b, comms, info);
 			fill_info(info, info->mid);
 			info->flag++;
 			move_to_a(a, &b, info, &comms);
@@ -255,33 +237,26 @@ void    stack_sort(t_stack **a, int size)
 		curr_flag = (*a)->flag;
 		while (curr_flag > 0)
 		{
-			if (b == NULL)
-				while ((*a)->flag == curr_flag)
-				{
-	//				stack_output(*a, b, comms, info);
-	//				check_top_value(a, &b, info, &comms);
-					pb(a, &b);
-					ft_lstadd_back(&comms,ft_lstnew(PB));
-	//				check_bottom_value(&b, info, &comms);
-					check_top_value(a, &b, info, &comms);
-				}
-//			fill_info(info, info->mid);
-//			info->flag++;
+			while ((*a)->flag == curr_flag)
+			{
+				if ((*a)->order > info->max)
+					info->max = (*a)->order;
+				pb(a, &b);
+				ft_lstadd_back(&comms,ft_lstnew(PB));
+				check_top_value(a, &b, info, &comms);
+			}
+			fill_info(info, info->max);
 			while (b != NULL)
 			{
-//				stack_output(*a, b, comms, info);
-				fill_info(info, info->mid);
 				info->flag++;
 				move_to_a(a, &b, info, &comms);
+				fill_info(info, info->mid);
 			}
 			curr_flag = (*a)->flag;
 		}
 		fill_info(info, size);
-		i++;
 	}
-//	printf("Result:\n");
-//	stack_output(*a, b, comms, info);
-//	replace(&comms);
+	replace(&comms);
 	output(comms);
 //	printf("\n|%d|\n", ft_lstsize(comms));
 	free(info);
