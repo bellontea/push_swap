@@ -63,6 +63,9 @@ int main(int argc, char **argv)
 		argc--;
 	}
 	sort(a, size);
-	stack_sort(&a, size);
+	if (size <= 6)
+		mini_stack_sort(&a, size);
+	else
+		stack_sort(&a, size);
 	ft_lstclear(&a);
 }

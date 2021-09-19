@@ -62,5 +62,9 @@ int			*sort(t_stack *stack, int size);
 void		array_output(t_stack *stack, int size);
 void    	stack_sort(t_stack **a, int size);
 void		output(t_stack	*comms);
+t_info		*ft_infonew(int size);
+int     	is_sorted(t_stack *a);
+void		mini_stack_sort(t_stack **a, int size);
+void		replace(t_stack	**comms);
 
 #endif

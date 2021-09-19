@@ -5,7 +5,9 @@ SRCS_COMMS = $(shell ls ./commands/*.c)
 
 SRCS_UTILS =   $(shell ls ./utils/*.c)
 
-SRCS		=   ${SRCS_UTILS} ${SRCS_COMMS} $(shell ls ./*.c)
+SRCS_SORT	=	$(shell ls ./sort/*.c)
+
+SRCS		=   ${SRCS_UTILS} ${SRCS_COMMS} ${SRCS_SORT} $(shell ls ./*.c)
 
 CFLAGS	= -Wall -Wextra -Werror
 
