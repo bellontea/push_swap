@@ -19,9 +19,9 @@ void	find_place(t_stack **a, t_stack **b, t_info *info, t_stack **comms)
 
 void	swap_if_next(t_stack **a, t_stack **b, t_info *info, t_stack **comms)
 {
-	while ((*a && (*a)->next && (*a)->next->order == info->next && (*a)->next->flag) || (*b && (*b)->next && (*b)->next->order == info->next))
+	while ((*a && (*a)->next && (*a)->next->order == info->next) || (*b && (*b)->next && (*b)->next->order == info->next))
 	{
-		if (*a && (*a)->next && (*a)->next->order == info->next && (*a)->next->flag != -1)
+		if (*a && (*a)->next && (*a)->next->order == info->next)
 		{
 			sa(a);
 			ft_lstadd_back(comms, ft_lstnew(SA));
