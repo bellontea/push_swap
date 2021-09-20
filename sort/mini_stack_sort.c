@@ -131,4 +131,7 @@ void	mini_stack_sort(t_stack **a, int size)
 	}
 	replace(&comms);
 	output(comms);
+	ft_lstclear(a);
+	ft_lstclear(&b);
+	ft_lstclear(&comms);
 }

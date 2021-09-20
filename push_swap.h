@@ -66,5 +66,10 @@ t_info		*ft_infonew(int size);
 int     	is_sorted(t_stack *a);
 void		mini_stack_sort(t_stack **a, int size);
 void		replace(t_stack	**comms);
+void		ft_putstr_fd(char *s, int fd);
+size_t		ft_strlen(const char *s);
+void		ft_error(t_stack **a);
+int			ft_check_nums(char *argv, t_stack *a, int *num);
+int			fill_stack(int size, char **nums, t_stack **a);
 
 #endif
