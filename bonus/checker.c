@@ -10,4 +10,5 @@ int main(int argc, char **argv)
 		return (-1);
 	if (!fill_stack(argc, argv, &a))
 		return (-1);
+	return (0);
 }

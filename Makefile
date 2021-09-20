@@ -10,7 +10,7 @@ SRCS_SORT	=	$(shell ls ./sort/*.c)
 
 SRCS		=   ${SRCS_UTILS} ${SRCS_COMMS} ${SRCS_SORT} $(shell ls ./*.c)
 
-BONUS		=	${shell ls ./checker/*.c} ${SRCS_UTILS}
+BONUS		=	${shell ls ./bonus/*.c} ${SRCS_UTILS}
 
 CFLAGS	= -Wall -Wextra -Werror
 
