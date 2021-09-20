@@ -71,5 +71,6 @@ size_t		ft_strlen(const char *s);
 void		ft_error(t_stack **a);
 int			ft_check_nums(char *argv, t_stack *a, int *num);
 int			fill_stack(int size, char **nums, t_stack **a);
+void		*ft_memset(void *b, int c, size_t len);
 
 #endif
