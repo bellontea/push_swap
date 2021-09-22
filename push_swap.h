@@ -5,7 +5,7 @@
 # include <limits.h>
 # include <unistd.h>
 
-typedef struct 		s_stack
+typedef struct s_stack
 {
 	int				content;
 	struct s_stack	*next;
@@ -13,7 +13,7 @@ typedef struct 		s_stack
 	int				flag;
 }					t_stack;
 
-typedef struct	s_info
+typedef struct s_info
 {
 	int			max;
 	int			mid;
@@ -47,23 +47,23 @@ void		ft_lstclear(t_stack **lst);
 void		ft_lstiter(t_stack *lst, void (*f)(int));
 int			ft_atoi(const char *str);
 int			ft_isdigit(int c);
-void    	sa(t_stack **stack_a);
-void    	sb(t_stack **stack_b);
-void    	ss(t_stack **stack_a, t_stack **stack_b);
-void    	pa(t_stack **a, t_stack **b);
-void    	pb(t_stack **a, t_stack **b);
-void    	ra(t_stack **a);
-void    	rb(t_stack **b);
-void    	rr(t_stack **a, t_stack **b);
-void    	rra(t_stack **a);
-void    	rrb(t_stack **b);
-void    	rrr(t_stack **a, t_stack **b);
+void		sa(t_stack **a, t_stack **b);
+void		sb(t_stack **a, t_stack **b);
+void		ss(t_stack **a, t_stack **b);
+void		pa(t_stack **a, t_stack **b);
+void		pb(t_stack **a, t_stack **b);
+void		ra(t_stack **a, t_stack **b);
+void		rb(t_stack **a, t_stack **b);
+void		rr(t_stack **a, t_stack **b);
+void		rra(t_stack **a, t_stack **b);
+void		rrb(t_stack **a, t_stack **b);
+void		rrr(t_stack **a, t_stack **b);
 void		sort(t_stack *stack, int size);
 void		array_output(t_stack *stack, int size);
-void    	stack_sort(t_stack **a, int size);
+void		stack_sort(t_stack **a, int size);
 void		output(t_stack	*comms);
 t_info		*ft_infonew(int size);
-int     	is_sorted(t_stack *a);
+int			is_sorted(t_stack *a);
 void		mini_stack_sort(t_stack **a, int size);
 void		replace(t_stack	**comms);
 void		ft_putstr_fd(char *s, int fd);
@@ -73,5 +73,8 @@ int			ft_check_nums(char *argv, t_stack *a, int *num);
 int			fill_stack(int size, char **nums, t_stack **a);
 void		*ft_memset(void *b, int c, size_t len);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
+void		clear_all(t_stack **a, t_stack **b, t_stack **comms);
+void		check_top_value(t_stack **a, t_stack **b, t_info *info,
+				t_stack **comms);
 
 #endif

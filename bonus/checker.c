@@ -2,7 +2,8 @@
 
 int	find_command(char *str)
 {
-	const char	commands[11][4] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"};
+	const char	commands[11][4] = {"sa", "sb", "ss", "pa",
+	"pb", "ra", "rb", "rr", "rra", "rrb", "rrr"};
 	int			i;
 
 	i = 0;
@@ -37,14 +38,48 @@ int	read_commands(t_stack **comms)
 		ft_memset(buf, 0, 4);
 		res = read(0, buf, 3);
 	}
-//	if (res == -1)
-//		return (0);
 	return (1);
 }
 
-int main(int argc, char **argv)
+void	create_array(void (**arr)(t_stack **, t_stack **))
 {
-	t_stack *a;
+	arr[SA] = sa;
+	arr[SB] = sb;
+	arr[SS] = ss;
+	arr[PA] = pa;
+	arr[PB] = pb;
+	arr[RA] = ra;
+	arr[RB] = rb;
+	arr[RR] = rr;
+	arr[RRA] = rra;
+	arr[RRB] = rrb;
+	arr[RRR] = rrr;
+}
+
+int	checker(t_stack **a, t_stack **comms)
+{
+	void	(*comm_funcs[11])(t_stack **, t_stack **);
+	t_stack	*b;
+
+	create_array(comm_funcs);
+	b = NULL;
+	while (*comms)
+	{
+		comm_funcs[(*comms)->content](a, &b);
+		*comms = (*comms)->next;
+	}
+	if (!b && is_sorted(*a))
+		return (1);
+	else
+	{
+		ft_lstclear(&b);
+		return (0);
+	}
+}
+
+int	main(int argc, char **argv)
+{
+	t_stack	*a;
 	t_stack	*comms;
 
 	a = NULL;
@@ -64,4 +99,9 @@ int main(int argc, char **argv)
 		ft_error(&a, &comms);
 		return (0);
 	}
+	if (checker(&a, &comms))
+		ft_putstr_fd("OK\n", 1);
+	else
+		ft_putstr_fd("KO\n", 1);
+	clear_all(&a, NULL, &comms);
 }

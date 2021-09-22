@@ -2,28 +2,30 @@
 
 void	swap(t_stack **stack)
 {
-	t_stack *next_elem;
+	t_stack	*next_elem;
 
-    if (!*stack || !(*stack)->next)
-        return ;
-    next_elem = (*stack)->next;
-    (*stack)->next = next_elem->next;
-    next_elem->next = *stack;
-    (*stack) = next_elem;
+	if (!*stack || !(*stack)->next)
+		return ;
+	next_elem = (*stack)->next;
+	(*stack)->next = next_elem->next;
+	next_elem->next = *stack;
+	(*stack) = next_elem;
 }
 
-void    sa(t_stack **stack_a)
+void	sa(t_stack **a, t_stack **b)
 {
-    swap(stack_a);
+	(void)b;
+	swap(a);
 }
 
-void    sb(t_stack **stack_b)
+void	sb(t_stack **a, t_stack **b)
 {
-    swap(stack_b);
+	(void)a;
+	swap(b);
 }
 
-void    ss(t_stack **stack_a, t_stack **stack_b)
+void	ss(t_stack **a, t_stack **b)
 {
-    swap(stack_a);
-    swap(stack_b);
+	swap(a);
+	swap(b);
 }

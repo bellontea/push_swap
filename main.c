@@ -2,7 +2,9 @@
 
 void	output(t_stack	*comms)
 {
-	const char	commands[11][4] = {"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"};
+	const char	commands[11][4] = {"sa", "sb", "ss", "pa", "pb", "ra",
+	"rb", "rr", "rra", "rrb", "rrr"};
+
 	while (comms)
 	{
 		ft_putstr_fd((char *)commands[comms->content], 1);
@@ -11,17 +13,14 @@ void	output(t_stack	*comms)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_stack *a;
+	t_stack	*a;
 
 	a = NULL;
 	argc--;
 	if (argc < 2)
-	{
-		ft_error(&a, NULL);
 		return (-1);
-	}
 	if (!fill_stack(argc, argv, &a))
 		return (-1);
 	sort(a, argc);
@@ -29,5 +28,5 @@ int main(int argc, char **argv)
 		mini_stack_sort(&a, argc);
 	else
 		stack_sort(&a, argc);
-//	ft_lstclear(&a);
+	ft_lstclear(&a);
 }

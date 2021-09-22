@@ -23,26 +23,26 @@ void	sort_three_elem_a(t_stack **a, t_stack **comms)
 		return ;
 	if ((*a)->next->order == next && is_sorted((*a)->next))
 	{
-		sa(a);
+		sa(a, NULL);
 		ft_lstadd_back(comms, ft_lstnew(SA));
 	}
 	else if ((*a)->order == next)
 	{
-		rra(a);
+		rra(a, NULL);
 		ft_lstadd_back(comms, ft_lstnew(RRA));
-		rra(a);
+		rra(a, NULL);
 		ft_lstadd_back(comms, ft_lstnew(RRA));
 	}
 	else if ((*a)->order != next && is_sorted((*a)->next))
 	{
-		ra(a);
+		ra(a, NULL);
 		ft_lstadd_back(comms, ft_lstnew(RA));	
 	}
 	else if ((*a)->order != next)
 	{
-		ra(a);
+		ra(a, NULL);
 		ft_lstadd_back(comms, ft_lstnew(RA));
-		ra(a);
+		ra(a, NULL);
 		ft_lstadd_back(comms, ft_lstnew(RA));
 	}
 }
@@ -56,26 +56,26 @@ void	sort_three_elem_b(t_stack **b, t_stack **comms)
 		return ;
 	if ((*b)->order != next && is_sorted((*b)->next))
 	{
-		rb(b);
+		rb(NULL, b);
 		ft_lstadd_back(comms, ft_lstnew(RB));	
 	}
 	else if ((*b)->next->order == next && is_sorted((*b)->next))
 	{
-		sb(b);
+		sb(NULL, b);
 		ft_lstadd_back(comms, ft_lstnew(SB));
 	}
 	else if ((*b)->order == next)
 	{
-		rrb(b);
+		rrb(NULL, b);
 		ft_lstadd_back(comms, ft_lstnew(RRB));
-		rrb(b);
+		rrb(NULL, b);
 		ft_lstadd_back(comms, ft_lstnew(RRB));
 	}
 	else if ((*b)->order != next)
 	{
-		rb(b);
+		rb(NULL, b);
 		ft_lstadd_back(comms, ft_lstnew(RB));
-		rb(b);
+		rb(NULL, b);
 		ft_lstadd_back(comms, ft_lstnew(RB));
 	}
 }
@@ -89,14 +89,14 @@ void	stack_merge(t_stack **a, t_stack **b, t_stack **comms)
 	{
 		if ((*a)->order == next)
 		{
-			ra(a);
+			ra(a, b);
 			ft_lstadd_back(comms, ft_lstnew(RA));
 		}
 		else if ((*b)->order == next)
 		{
 			pa(a, b);
 			ft_lstadd_back(comms, ft_lstnew(PA));
-			ra(a);
+			ra(a, b);
 			ft_lstadd_back(comms, ft_lstnew(RA));
 		}
 		next++;
@@ -114,7 +114,7 @@ void	mini_stack_sort(t_stack **a, int size)
 		return ;
 	if (size == 2)
 	{
-		sa(a);
+		sa(a, &b);
 		ft_lstadd_back(&comms, ft_lstnew(SA));
 	}
 	if (size > 2)
@@ -126,12 +126,10 @@ void	mini_stack_sort(t_stack **a, int size)
 		}
 		sort_three_elem_a(a, &comms);
 		if (ft_lstsize(b) > 1)
-			sort_three_elem_b(&b, &comms);		
+			sort_three_elem_b(&b, &comms);
 		stack_merge(a, &b, &comms);
 	}
 	replace(&comms);
 	output(comms);
-	ft_lstclear(a);
-	ft_lstclear(&b);
-	ft_lstclear(&comms);
+	clear_all(a, &b, &comms);
 }
