@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	argc--;
 	if (argc < 2)
 	{
-		ft_error(&a);
+		ft_error(&a, NULL);
 		return (-1);
 	}
 	if (!fill_stack(argc, argv, &a))

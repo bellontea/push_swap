@@ -9,7 +9,7 @@ void	sw(int *a, int *b)
 	*b = c;
 }
 
-int	*sort(t_stack *stack, int size)
+void	sort(t_stack *stack, int size)
 {
 	int	*array;
 	int i;
@@ -48,5 +48,6 @@ int	*sort(t_stack *stack, int size)
 		*links[i] = i + 1;
 		i++;
 	}
-	return (array);
+	free(array);
+	free(links);
 }
