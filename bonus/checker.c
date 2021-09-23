@@ -53,21 +53,6 @@ int	read_commands(t_stack **comms)
 	return (1);
 }
 
-void	create_array(void (**arr)(t_stack **, t_stack **))
-{
-	arr[SA] = sa;
-	arr[SB] = sb;
-	arr[SS] = ss;
-	arr[PA] = pa;
-	arr[PB] = pb;
-	arr[RA] = ra;
-	arr[RB] = rb;
-	arr[RR] = rr;
-	arr[RRA] = rra;
-	arr[RRB] = rrb;
-	arr[RRR] = rrr;
-}
-
 int	checker(t_stack **a, t_stack **comms)
 {
 	void	(*comm_funcs[11])(t_stack **, t_stack **);

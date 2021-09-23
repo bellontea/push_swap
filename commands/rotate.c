@@ -12,20 +12,23 @@ void	rotate(t_stack **stack)
 	ft_lstadd_back(stack, first);
 }
 
-void	ra(t_stack **a, t_stack **b)
+int	ra(t_stack **a, t_stack **b)
 {
 	(void)b;
 	rotate(a);
+	return (RA);
 }
 
-void	rb(t_stack **a, t_stack **b)
+int	rb(t_stack **a, t_stack **b)
 {
 	(void)a;
 	rotate(b);
+	return (RB);
 }
 
-void	rr(t_stack **a, t_stack **b)
+int	rr(t_stack **a, t_stack **b)
 {
 	rotate(a);
 	rotate(b);
+	return (RR);
 }

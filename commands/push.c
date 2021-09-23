@@ -11,12 +11,14 @@ void	push(t_stack **out, t_stack **in)
 	ft_lstadd_front(in, elem);
 }
 
-void	pa(t_stack **a, t_stack **b)
+int	pa(t_stack **a, t_stack **b)
 {
 	push(b, a);
+	return (PA);
 }
 
-void	pb(t_stack **a, t_stack **b)
+int	pb(t_stack **a, t_stack **b)
 {
 	push(a, b);
+	return (PB);
 }

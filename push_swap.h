@@ -47,17 +47,17 @@ void		ft_lstclear(t_stack **lst);
 void		ft_lstiter(t_stack *lst, void (*f)(int));
 int			ft_atoi(const char *str);
 int			ft_isdigit(int c);
-void		sa(t_stack **a, t_stack **b);
-void		sb(t_stack **a, t_stack **b);
-void		ss(t_stack **a, t_stack **b);
-void		pa(t_stack **a, t_stack **b);
-void		pb(t_stack **a, t_stack **b);
-void		ra(t_stack **a, t_stack **b);
-void		rb(t_stack **a, t_stack **b);
-void		rr(t_stack **a, t_stack **b);
-void		rra(t_stack **a, t_stack **b);
-void		rrb(t_stack **a, t_stack **b);
-void		rrr(t_stack **a, t_stack **b);
+int			sa(t_stack **a, t_stack **b);
+int			sb(t_stack **a, t_stack **b);
+int			ss(t_stack **a, t_stack **b);
+int			pa(t_stack **a, t_stack **b);
+int			pb(t_stack **a, t_stack **b);
+int			ra(t_stack **a, t_stack **b);
+int			rb(t_stack **a, t_stack **b);
+int			rr(t_stack **a, t_stack **b);
+int			rra(t_stack **a, t_stack **b);
+int			rrb(t_stack **a, t_stack **b);
+int			rrr(t_stack **a, t_stack **b);
 void		sort(t_stack *stack, int size);
 void		array_output(t_stack *stack, int size);
 void		stack_sort(t_stack **a, int size);
@@ -76,5 +76,6 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 void		clear_all(t_stack **a, t_stack **b, t_stack **comms);
 void		check_top_value(t_stack **a, t_stack **b, t_info *info,
 				t_stack **comms);
+void		create_array(void (**arr)(t_stack **, t_stack **));
 
 #endif

@@ -13,20 +13,23 @@ void	reverse_rotate(t_stack **stack)
 	temp->next = NULL;
 }
 
-void	rra(t_stack **a, t_stack **b)
+int	rra(t_stack **a, t_stack **b)
 {
 	(void)b;
 	reverse_rotate(a);
+	return (RRA);
 }
 
-void	rrb(t_stack **a, t_stack **b)
+int	rrb(t_stack **a, t_stack **b)
 {
 	(void)a;
 	reverse_rotate(b);
+	return (RRB);
 }
 
-void	rrr(t_stack **a, t_stack **b)
+int	rrr(t_stack **a, t_stack **b)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
+	return (RRR);
 }

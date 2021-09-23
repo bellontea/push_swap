@@ -22,28 +22,18 @@ void	sort_three_elem_a(t_stack **a, t_stack **comms)
 	if (is_sorted(*a))
 		return ;
 	if ((*a)->next->order == next && is_sorted((*a)->next))
-	{
-		sa(a, NULL);
-		ft_lstadd_back(comms, ft_lstnew(SA));
-	}
+		ft_lstadd_back(comms, ft_lstnew(sa(a, NULL)));
 	else if ((*a)->order == next)
 	{
-		rra(a, NULL);
-		ft_lstadd_back(comms, ft_lstnew(RRA));
-		rra(a, NULL);
-		ft_lstadd_back(comms, ft_lstnew(RRA));
+		ft_lstadd_back(comms, ft_lstnew(rra(a, NULL)));
+		ft_lstadd_back(comms, ft_lstnew(rra(a, NULL)));
 	}
 	else if ((*a)->order != next && is_sorted((*a)->next))
-	{
-		ra(a, NULL);
-		ft_lstadd_back(comms, ft_lstnew(RA));	
-	}
+		ft_lstadd_back(comms, ft_lstnew(ra(a, NULL)));
 	else if ((*a)->order != next)
 	{
-		ra(a, NULL);
-		ft_lstadd_back(comms, ft_lstnew(RA));
-		ra(a, NULL);
-		ft_lstadd_back(comms, ft_lstnew(RA));
+		ft_lstadd_back(comms, ft_lstnew(ra(a, NULL)));
+		ft_lstadd_back(comms, ft_lstnew(ra(a, NULL)));
 	}
 }
 
@@ -55,28 +45,18 @@ void	sort_three_elem_b(t_stack **b, t_stack **comms)
 	if (is_sorted(*b))
 		return ;
 	if ((*b)->order != next && is_sorted((*b)->next))
-	{
-		rb(NULL, b);
-		ft_lstadd_back(comms, ft_lstnew(RB));	
-	}
+		ft_lstadd_back(comms, ft_lstnew(rb(NULL, b)));
 	else if ((*b)->next->order == next && is_sorted((*b)->next))
-	{
-		sb(NULL, b);
-		ft_lstadd_back(comms, ft_lstnew(SB));
-	}
+		ft_lstadd_back(comms, ft_lstnew(sb(NULL, b)));
 	else if ((*b)->order == next)
 	{
-		rrb(NULL, b);
-		ft_lstadd_back(comms, ft_lstnew(RRB));
-		rrb(NULL, b);
-		ft_lstadd_back(comms, ft_lstnew(RRB));
+		ft_lstadd_back(comms, ft_lstnew(rrb(NULL, b)));
+		ft_lstadd_back(comms, ft_lstnew(rrb(NULL, b)));
 	}
 	else if ((*b)->order != next)
 	{
-		rb(NULL, b);
-		ft_lstadd_back(comms, ft_lstnew(RB));
-		rb(NULL, b);
-		ft_lstadd_back(comms, ft_lstnew(RB));
+		ft_lstadd_back(comms, ft_lstnew(rb(NULL, b)));
+		ft_lstadd_back(comms, ft_lstnew(rb(NULL, b)));
 	}
 }
 
@@ -88,16 +68,11 @@ void	stack_merge(t_stack **a, t_stack **b, t_stack **comms)
 	while (*b)
 	{
 		if ((*a)->order == next)
-		{
-			ra(a, b);
-			ft_lstadd_back(comms, ft_lstnew(RA));
-		}
+			ft_lstadd_back(comms, ft_lstnew(ra(a, b)));
 		else if ((*b)->order == next)
 		{
-			pa(a, b);
-			ft_lstadd_back(comms, ft_lstnew(PA));
-			ra(a, b);
-			ft_lstadd_back(comms, ft_lstnew(RA));
+			ft_lstadd_back(comms, ft_lstnew(pa(a, b)));
+			ft_lstadd_back(comms, ft_lstnew(ra(a, b)));
 		}
 		next++;
 	}
@@ -113,17 +88,11 @@ void	mini_stack_sort(t_stack **a, int size)
 	if (is_sorted(*a))
 		return ;
 	if (size == 2)
-	{
-		sa(a, &b);
-		ft_lstadd_back(&comms, ft_lstnew(SA));
-	}
+		ft_lstadd_back(&comms, ft_lstnew(sa(a, &b)));
 	if (size > 2)
 	{
 		while (ft_lstsize(*a) != 3)
-		{
-			pb(a, &b);
-			ft_lstadd_back(&comms, ft_lstnew(PB));
-		}
+			ft_lstadd_back(&comms, ft_lstnew(pb(a, &b)));
 		sort_three_elem_a(a, &comms);
 		if (ft_lstsize(b) > 1)
 			sort_three_elem_b(&b, &comms);

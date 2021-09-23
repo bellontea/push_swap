@@ -12,20 +12,23 @@ void	swap(t_stack **stack)
 	(*stack) = next_elem;
 }
 
-void	sa(t_stack **a, t_stack **b)
+int	sa(t_stack **a, t_stack **b)
 {
 	(void)b;
 	swap(a);
+	return (SA);
 }
 
-void	sb(t_stack **a, t_stack **b)
+int	sb(t_stack **a, t_stack **b)
 {
 	(void)a;
 	swap(b);
+	return (SB);
 }
 
-void	ss(t_stack **a, t_stack **b)
+int	ss(t_stack **a, t_stack **b)
 {
 	swap(a);
 	swap(b);
+	return (SS);
 }
