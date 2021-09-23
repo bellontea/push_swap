@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int		is_sorted(t_stack *a)
+int	is_sorted(t_stack *a)
 {
 	while (a->next)
 	{

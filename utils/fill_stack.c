@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int		fill_stack(int size, char **nums, t_stack **a)
+int	fill_stack(int size, char **nums, t_stack **a)
 {
 	int	num;
 

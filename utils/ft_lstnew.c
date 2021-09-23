@@ -10,6 +10,6 @@ t_stack	*ft_lstnew(int content)
 	list->content = content;
 	list->next = NULL;
 	list->flag = 0;
-	list->order = 0;	
+	list->order = 0;
 	return (list);
 }

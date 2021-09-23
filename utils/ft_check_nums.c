@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int		ft_check_nums(char *argv, t_stack *a, int *num)
+int	ft_check_nums(char *argv, t_stack *a, int *num)
 {
 	while (argv[*num])
 	{
