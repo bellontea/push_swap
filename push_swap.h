@@ -76,6 +76,7 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 void		clear_all(t_stack **a, t_stack **b, t_stack **comms);
 void		check_top_value(t_stack **a, t_stack **b, t_info *info,
 				t_stack **comms);
-void		create_array(void (**arr)(t_stack **, t_stack **));
+void		create_array(int (**arr)(t_stack **, t_stack **));
+int			check_values(t_stack *s, int value);
 
 #endif

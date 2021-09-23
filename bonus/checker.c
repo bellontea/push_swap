@@ -55,7 +55,7 @@ int	read_commands(t_stack **comms)
 
 int	checker(t_stack **a, t_stack **comms)
 {
-	void	(*comm_funcs[11])(t_stack **, t_stack **);
+	int		(*comm_funcs[11])(t_stack **, t_stack **);
 	t_stack	*b;
 
 	create_array(comm_funcs);

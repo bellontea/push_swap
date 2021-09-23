@@ -17,27 +17,12 @@ void	move_to_b(t_stack **a, t_stack **b, t_info *info, t_stack **comms)
 	{
 		if ((*a)->order <= info->mid)
 		{
-			pb(a, b);
-			ft_lstadd_back(comms, ft_lstnew(PB));
+			ft_lstadd_back(comms, ft_lstnew(pb(a, b)));
 			i++;
 		}
 		else
-		{
-			ra(a, b);
-			ft_lstadd_back(comms, ft_lstnew(RA));
-		}
+			ft_lstadd_back(comms, ft_lstnew(ra(a, b)));
 	}
-}
-
-int	check_values(t_stack *s, int mid)
-{
-	while (s)
-	{
-		if (s->order >= mid)
-			return (1);
-		s = s->next;
-	}
-	return (0);
 }
 
 void	move_to_a(t_stack **a, t_stack **b, t_info *info, t_stack **comms)
@@ -48,18 +33,39 @@ void	move_to_a(t_stack **a, t_stack **b, t_info *info, t_stack **comms)
 		if (!*b)
 			return ;
 		if ((*b)->order < info->mid)
-		{
-			rb(a, b);
-			ft_lstadd_back(comms, ft_lstnew(RB));
-		}
+			ft_lstadd_back(comms, ft_lstnew(rb(a, b)));
 		else
 		{
 			(*b)->flag = info->flag;
-			pa(a, b);
-			ft_lstadd_back(comms, ft_lstnew(PA));
+			ft_lstadd_back(comms, ft_lstnew(pa(a, b)));
 		}
 	}
 	check_top_value(a, b, info, comms);
+}
+
+void	move_to_b_flag(t_stack **a, t_stack **b, t_info *info, t_stack **comms)
+{	
+	int	curr_flag;
+
+	curr_flag = (*a)->flag;
+	while (curr_flag > 0)
+	{
+		while ((*a)->flag == curr_flag)
+		{
+			if ((*a)->order > info->max)
+				info->max = (*a)->order;
+			ft_lstadd_back(comms, ft_lstnew(pb(a, b)));
+			check_top_value(a, b, info, comms);
+		}
+		fill_info(info, info->max);
+		while (*b != NULL)
+		{
+			info->flag++;
+			move_to_a(a, b, info, comms);
+			fill_info(info, info->mid);
+		}
+		curr_flag = (*a)->flag;
+	}
 }
 
 void	stack_sort(t_stack **a, int size)
@@ -67,7 +73,6 @@ void	stack_sort(t_stack **a, int size)
 	t_stack		*b;
 	t_info		*info;
 	t_stack		*comms;
-	int			curr_flag;
 
 	b = NULL;
 	comms = NULL;
@@ -76,36 +81,14 @@ void	stack_sort(t_stack **a, int size)
 	{
 		move_to_b(a, &b, info, &comms);
 		while (info->flag && ft_lstlast(*a)->flag != -1)
-		{
-			rra(a, &b);
-			ft_lstadd_back(&comms, ft_lstnew(RRA));
-		}
+			ft_lstadd_back(&comms, ft_lstnew(rra(a, &b)));
 		while (b != NULL)
 		{
 			fill_info(info, info->mid);
 			info->flag++;
 			move_to_a(a, &b, info, &comms);
 		}
-		curr_flag = (*a)->flag;
-		while (curr_flag > 0)
-		{
-			while ((*a)->flag == curr_flag)
-			{
-				if ((*a)->order > info->max)
-					info->max = (*a)->order;
-				pb(a, &b);
-				ft_lstadd_back(&comms, ft_lstnew(PB));
-				check_top_value(a, &b, info, &comms);
-			}
-			fill_info(info, info->max);
-			while (b != NULL)
-			{
-				info->flag++;
-				move_to_a(a, &b, info, &comms);
-				fill_info(info, info->mid);
-			}
-			curr_flag = (*a)->flag;
-		}
+		move_to_b_flag(a, &b, info, &comms);
 		fill_info(info, size);
 	}
 	replace(&comms);
