@@ -68,7 +68,7 @@ void		mini_stack_sort(t_stack **a, int size);
 void		replace(t_stack	**comms);
 void		ft_putstr_fd(char *s, int fd);
 size_t		ft_strlen(const char *s);
-void		ft_error(t_stack **a, t_stack **comms);
+int			ft_error(t_stack **a, t_stack **comms);
 int			ft_check_nums(char *argv, t_stack *a, int *num);
 int			fill_stack(int size, char **nums, t_stack **a);
 void		*ft_memset(void *b, int c, size_t len);
@@ -78,5 +78,10 @@ void		check_top_value(t_stack **a, t_stack **b, t_info *info,
 				t_stack **comms);
 void		create_array(int (**arr)(t_stack **, t_stack **));
 int			check_values(t_stack *s, int value);
+char		**ft_split(char const *s, char c);
+char		*ft_strchr(const char *s, int c);
+size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
+int			array_size(char	**array);
+void		*ft_calloc(size_t count, size_t size);
 
 #endif
