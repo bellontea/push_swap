@@ -84,5 +84,6 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 int			array_size(char	**array);
 void		*ft_calloc(size_t count, size_t size);
 void		free_array(char **array);
+int			check_one_arg(int *argc, char *arg, t_stack **a);
 
 #endif

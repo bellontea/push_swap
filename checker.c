@@ -16,12 +16,13 @@ int	find_command(char *str)
 	return (-1);
 }
 
-void	read_extra(void)
+int	read_extra(void)
 {
 	int	ch;
 
-	while (read(0, &ch, 1))
+	while (read(0, &ch, 1) && ch != '\n')
 		;
+	return (0);
 }
 
 int	read_commands(t_stack **comms)
@@ -42,7 +43,7 @@ int	read_commands(t_stack **comms)
 		if (!res && !buf[0])
 			break ;
 		if (i >= 4)
-			read_extra();
+			return (read_extra());
 		buf[i] = 0;
 		command = find_command((char *)buf);
 		if (command == -1)
@@ -78,22 +79,14 @@ int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*comms;
-	int		ret;
-	char	**array;
 
 	a = NULL;
 	comms = NULL;
 	if (argc < 2)
 		return (0);
 	if (!fill_stack(argc - 1, argv + 1, &a))
-	{
-		array = ft_split(argv[1], ' ');
-		argc = array_size(array);
-		ret = fill_stack(argc, array, &a);
-		free_array(array);
-		if (!ret)
-			return (ft_error(&a, &comms));
-	}
+		if (!check_one_arg(&argc, argv[1], &a))
+			return (ft_error(&a, NULL));
 	if (!read_commands(&comms))
 		return (ft_error(&a, &comms));
 	if (checker(&a, &comms))

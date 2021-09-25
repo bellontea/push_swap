@@ -22,7 +22,7 @@ OBJS	=	$(SRCS:%.c=%.o)
 
 BONUS_OBJS	=	$(BONUS:%.c=%.o)
 
-ARG		=	$(shell ruby -e "puts (1..100).to_a.shuffle.join(' ')")
+ARG		=	$(shell ruby -e "puts (1..500).to_a.shuffle.join(' ')")
 
 all:		$(NAME)
 
@@ -49,7 +49,8 @@ test:
 			make -s && make -s  clean && ./push_swap $(ARG)
 
 test2:
-			echo "$(ARG5)" > arg.txt
+			echo "$(ARG)" > arg.txt
 			make -s && ./push_swap $(shell cat arg.txt) | ./checker_Mac $(shell cat arg.txt)
+			./push_swap $(shell cat arg.txt) | wc -l
 
 .PHONY: clean fclean re bonus test

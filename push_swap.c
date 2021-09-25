@@ -25,7 +25,6 @@ int	clear_if_sorted(t_stack **a)
 
 int	main(int argc, char **argv)
 {
-	int		ret;
 	t_stack	*a;
 	char	**array;
 
@@ -34,14 +33,8 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	if (!fill_stack(argc - 1, argv + 1, &a))
-	{
-		array = ft_split(argv[1], ' ');
-		argc = array_size(array) + 1;
-		ret = fill_stack(argc - 1, array, &a);
-		free_array(array);
-		if (!ret)
+		if (!check_one_arg(&argc, argv[1], &a))
 			return (ft_error(&a, NULL));
-	}
 	if (clear_if_sorted(&a))
 		return (0);
 	argc--;
