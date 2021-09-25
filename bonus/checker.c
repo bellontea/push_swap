@@ -78,24 +78,24 @@ int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*comms;
+	int		ret;
+	char	**array;
 
 	a = NULL;
 	comms = NULL;
-	argc--;
-	if (!argc)
-		return (0);
 	if (argc < 2)
+		return (0);
+	if (!fill_stack(argc - 1, argv + 1, &a))
 	{
-		ft_error(&a, &comms);
-		return (0);
+		array = ft_split(argv[1], ' ');
+		argc = array_size(array);
+		ret = fill_stack(argc, array, &a);
+		free_array(array);
+		if (!ret)
+			return (ft_error(&a, &comms));
 	}
-	if (!fill_stack(argc, argv, &a))
-		return (0);
 	if (!read_commands(&comms))
-	{
-		ft_error(&a, &comms);
-		return (0);
-	}
+		return (ft_error(&a, &comms));
 	if (checker(&a, &comms))
 		ft_putstr_fd("OK\n", 1);
 	else

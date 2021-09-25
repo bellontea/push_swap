@@ -3,7 +3,12 @@
 int	ft_check_nums(char *argv, t_stack *a, int *num)
 {
 	if (argv[0] == '-' || argv[0] == '+')
-		(*num)++;
+	{
+		if (argv[1] != 0)
+			(*num)++;
+		else
+			return (0);
+	}
 	while (argv[*num])
 	{
 		if (!ft_isdigit(argv[*num]))
