@@ -8,9 +8,9 @@ SRCS_UTILS =   $(shell ls ./utils/*.c)
 
 SRCS_SORT	=	$(shell ls ./sort/*.c)
 
-SRCS		=   ${SRCS_UTILS} ${SRCS_COMMS} ${SRCS_SORT} $(shell ls ./*.c)
+SRCS		=   ${SRCS_UTILS} ${SRCS_COMMS} ${SRCS_SORT} push_swap.c
 
-BONUS		=	${shell ls ./bonus/*.c} ${SRCS_UTILS} ${SRCS_COMMS}
+BONUS		=	${SRCS_UTILS} ${SRCS_COMMS} checker.c
 
 CFLAGS	= -Wall -Wextra -Werror
 
